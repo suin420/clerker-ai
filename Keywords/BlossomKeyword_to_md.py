@@ -105,7 +105,7 @@ class AIAssistant:
         with open(output_summary_json, 'w', encoding='utf-8') as json_file:
             json.dump(output_dict, json_file, ensure_ascii=False, indent=4)
 
-        font_path = './bllossom_keyword/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundB.ttf'
+        font_path = './Keywords/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundB.ttf'
         fm.fontManager.addfont(font_path)
         plt.rcParams['font.family'] = 'NanumSquareRound'
 
@@ -122,7 +122,7 @@ class AIAssistant:
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis('off')
         plt.title('키워드 빈도수 워드클라우드', size=15)
-        plt.savefig('./bllossom_keyword/keyword_wordcloud.png')
+        plt.savefig('./Keywords/keyword_wordcloud.png')
         plt.close()
 
         ## 가장 자주 등장하는 상위 5개 키워드 추출
@@ -135,7 +135,7 @@ class AIAssistant:
         plt.xlabel('키워드')
         plt.ylabel('빈도수')
         plt.title('상위 5개 키워드 빈도수')
-        plt.savefig('./bllossom_keyword/keyword_frequency.png')
+        plt.savefig('./Keywords/keyword_frequency.png')
         plt.close()
 
         ## 표지 작성
@@ -144,8 +144,8 @@ class AIAssistant:
         cover_page += f"#### 날짜 : {today_date}\n"
         cover_page += "## 상위 키워드\n\n"
         cover_page += keyword_text + "\n\n" 
-        cover_page += "![상위 5개 키워드 빈도수](./bllossom_keyword/keyword_frequency.png)\n\n"
-        cover_page += "![키워드 워드클라우드](./bllossom_keyword/keyword_wordcloud.png)\n\n"
+        cover_page += "![상위 5개 키워드 빈도수](./Keywords/keyword_frequency.png)\n\n"
+        cover_page += "![키워드 워드클라우드](./Keywords/keyword_wordcloud.png)\n\n"
         
         cover_page += "## 목차\n\n"
         for idx, title in enumerate(chunk_titles, start=1):

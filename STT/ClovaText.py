@@ -36,7 +36,7 @@ def make_stt_txt(input_domain,input_audio_file,output_txt_file):
     agenda_keyword = load_boosting_keywords('STT/stt_text/KeywordBoosting/Agenda_middle.json')
     domain_keyword.extend(agenda_keyword)
 
-    res = ClovaSpeechClient().req_upload(file="STT/stt_audio/{wav_audio_file}", completion='sync', boostings = domain_keyword)
+    res = ClovaSpeechClient().req_upload(file=f'{wav_audio_file}', completion='sync', boostings = domain_keyword)
     result = res.json()
 
     ## Korean Stopwords
