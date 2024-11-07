@@ -106,7 +106,6 @@ def make_chunk(input_stt_txt, output_chunk_dict):
 
     input = " ".join(output_list)
 
-
     ## embedding chunking
     number_of_chunks = len(input) // 500
     chunks = semanticChunker(text = input, number_of_chunks = number_of_chunks, max_length = 512, text_splitter=SemanticChunker)
