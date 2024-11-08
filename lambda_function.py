@@ -8,7 +8,7 @@ from Diagrams.DiagramGeneration import diagram_gen
 
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
 SECRET_KEY = os.environ.get("SECRET_KEY")
-bucket_name = "clerker-ai"
+bucket_name = "clerkerai"
 
 s3 = boto3.client(
     's3',
