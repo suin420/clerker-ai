@@ -16,7 +16,7 @@ RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - && \
 RUN npm install -g @mermaid-js/mermaid-cli
 RUN /var/lang/bin/python3.10 -m pip install llama-cpp-python
 RUN /var/lang/bin/python3.10 -m pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cpu
-RUN git clone -b feat/script https://github.com/D-X-W-Clerker/clerker-ai.git
+RUN git clone https://github.com/D-X-W-Clerker/clerker-ai.git
 RUN /var/lang/bin/python3.10 -m pip install -r clerker-ai/requirements.txt
 COPY Chunking/ /var/task/Chunking/
 COPY Diagrams/ /var/task/Diagrams/
