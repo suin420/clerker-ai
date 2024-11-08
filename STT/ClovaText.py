@@ -32,8 +32,8 @@ def make_stt_txt(input_domain,input_audio_file,output_txt_file):
     audio_preprocessor.increase_volume().noise_reduction().normalize_volume().save_audio(wav_audio_file)
 
     ## Keyword Boosting
-    domain_keyword = load_boosting_keywords(f'STT/stt_text/KeywordBoosting/{input_domain}_KeywordBoosting.json')
-    agenda_keyword = load_boosting_keywords('STT/stt_text/KeywordBoosting/Agenda_middle.json')
+    domain_keyword = load_boosting_keywords(f'/tmp/STT/stt_text/KeywordBoosting/{input_domain}_KeywordBoosting.json')
+    agenda_keyword = load_boosting_keywords('/tmp/STT/stt_text/KeywordBoosting/Agenda_middle.json')
     domain_keyword.extend(agenda_keyword)
 
     res = ClovaSpeechClient().req_upload(file=f'{wav_audio_file}', completion='sync', boostings = domain_keyword)
