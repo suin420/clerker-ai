@@ -117,7 +117,7 @@ def lambda_handler(event, context):
         output_chunk_dict,
         diagram_summary_json,
         output_summary_json,
-        model_id=os.path.join(local_model_dir, 'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M'),
+        model_id=os.path.join(local_model_dir, 'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/'),
         model_path=os.path.join(local_model_dir, 'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf')
     )
     print(f"다이어그램 및 보고서용 JSON 파일 생성 완료 : {output_summary_json}")
