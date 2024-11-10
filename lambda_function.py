@@ -42,7 +42,7 @@ def download_folder_from_s3(s3_folder, local_dir):
 
 def lambda_handler(event, context):
     os.environ['MPLCONFIGDIR'] = '/tmp/matplotlib'
-    # os.environ['TRANSFORMERS_CACHE'] = '/tmp/huggingface'
+    #os.environ['TRANSFORMERS_CACHE'] = '/tmp/huggingface'
     os.environ["TRANSFORMERS_CACHE"] = "/tmp/.cache/huggingface"
     os.environ['NUMBA_CACHE_DIR'] = '/tmp/numba_cache'
 
@@ -93,7 +93,7 @@ def lambda_handler(event, context):
 
     model_folders = [
         'models--jhgan--ko-sroberta-sts/',
-        'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/',
+        'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/',
     ]
     for model_folder in model_folders:
         s3_model_folder = f'models/{model_folder}'
