@@ -122,7 +122,7 @@ def extract_mermaid_code(text):
 
 def diagram_gen(input_summary_json):
     model_id = '/tmp/models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7'
-    model_path = '/tmp/models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf'
+    model_path = '/tmp/models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf'
     model, tokenizer = load_model_and_tokenizer(model_id, model_path)
 
     data = load_json(input_summary_json)

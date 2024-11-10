@@ -54,7 +54,6 @@ def lambda_handler(event, context):
     os.makedirs('/tmp/Diagrams', exist_ok=True)
     os.makedirs('/tmp/Diagrams/mermaid', exist_ok=True)
     os.makedirs('/tmp/models', exist_ok=True)
-    os.makedirs('/tmp/models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M', exist_ok=True)
     os.makedirs('/tmp/models/models--jhgan--ko-sroberta-sts/snapshots/3efa8e54a06798b00bd1abb9c22b2dd530e22b24/', exist_ok=True)
     os.makedirs('/tmp/models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/', exist_ok=True)
     os.makedirs('/tmp/Keywords/NanumFontSetup_TTF_SQUARE_ROUND', exist_ok=True)
@@ -118,7 +117,7 @@ def lambda_handler(event, context):
         diagram_summary_json,
         output_summary_json,
         model_id=os.path.join(local_model_dir, 'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/'),
-        model_path=os.path.join(local_model_dir, 'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf')
+        model_path=os.path.join(local_model_dir, 'models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf')
     )
     print(f"다이어그램 및 보고서용 JSON 파일 생성 완료 : {output_summary_json}")
 
