@@ -74,11 +74,12 @@ def lambda_handler(event, context):
     local_model_dir = '/tmp/models'
     os.makedirs(local_model_dir, exist_ok=True)
 
-    model_folder = 'models/models--jhgan--ko-sroberta-sts/'
-
-    for file in model_folder:
-        s3_model_folder = f'models/{file}'
-        local_model_folder = os.path.join(local_model_dir, file)
+    model_folders = [
+        'models--jhgan--ko-sroberta-sts/'
+    ]
+    for model_folder in model_folders:
+        s3_model_folder = f'models/{model_folder}'
+        local_model_folder = os.path.join(local_model_dir, model_folder)
         print(f"Downloading model folder from S3: {s3_model_folder}")
         download_folder_from_s3(s3_model_folder, local_model_folder)
 
