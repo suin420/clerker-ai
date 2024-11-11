@@ -3,6 +3,7 @@ import json
 import boto3
 from STT.ClovaText import make_stt_txt
 from Chunking.EmbeddingChunking import make_chunk
+import time
 
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
 SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -61,15 +62,23 @@ def lambda_handler(event, context):
     output_txt_file = '/tmp/STT/stt_text/stt_text.txt'
     output_chunk_dict = '/tmp/Chunking/chunking_text.json'
 
+    
+    mp3_down_start = time.time()
     download_from_s3(mp3_file_url, input_audio_file)
+    mp3_down_end = time.time()
+    print("mp3 download time : ", mp3_down_end - mp3_down_start)
+
 
     keyword_boosting_domain = f'STT/stt_text/KeywordBoosting/{input_domain}_KeywordBoosting.json'
     keyword_boosting_agenda = 'STT/stt_text/KeywordBoosting/Agenda_middle.json'
     local_keyword_boosting_domain = f'/tmp/STT/stt_text/KeywordBoosting/{input_domain}_KeywordBoosting.json'
     local_keyword_boosting_agenda = '/tmp/STT/stt_text/KeywordBoosting/Agenda_middle.json'
 
+    keyword_down_start = time.time()
     download_from_s3(keyword_boosting_domain, local_keyword_boosting_domain)
     download_from_s3(keyword_boosting_agenda, local_keyword_boosting_agenda)
+    keyword_down_end = time.time()
+    print("keyword download time : ", keyword_down_end - keyword_down_start)
 
     local_model_dir = '/tmp/models'
     os.makedirs(local_model_dir, exist_ok=True)
@@ -81,17 +90,26 @@ def lambda_handler(event, context):
         s3_model_folder = f'models/{model_folder}'
         local_model_folder = os.path.join(local_model_dir, model_folder)
         print(f"Downloading model folder from S3: {s3_model_folder}")
+        model_down_start = time.time()
         download_folder_from_s3(s3_model_folder, local_model_folder)
+        model_down_end = time.time()
+        print("model download time : ", model_down_end - model_down_start)
 
+    make_stt_start = time.time()
     make_stt_txt(
         input_domain,
         input_audio_file,
         output_txt_file,
     )
+    make_stt_end = time.time()
     print(f"STT 파일 생성 완료 : {output_txt_file}")
+    print(f"STT runnnig time : {make_stt_end - make_stt_start}")
 
+    make_chunk_start = time.time()
     make_chunk(output_txt_file, output_chunk_dict)
+    make_chunk_end = time.time()
     print(f"Chunk Dict 파일 생성 완료 : {output_chunk_dict}")
+    print(f"Chunk runnnig time : {make_chunk_end - make_chunk_start}")
 
     upload_to_s3(output_txt_file, 'STT/stt_text/stt_text.txt')
     upload_to_s3(output_chunk_dict, 'Chunking/chunking_text.json')
