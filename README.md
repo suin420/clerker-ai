@@ -1,5 +1,5 @@
 # 📝 AI 모델을 활용한 회의 지원 솔루션 서비스 (Clerker - AI Team)
-<img src="Clerker_image.png" alt="Clerker" width="600"/>
+<img src="Clerker_image.png" alt="Clerker" width="900"/>
 
 ## 🔍 프로젝트 소개  
 - AI 모델을 활용한 회의 지원 솔루션 서비스 **Clerker**는 음성 및 화상 회의 내용을 자동으로 요약하여 직관적이고 효율적인 보고서를 생성하는 혁신적인 서비스입니다.  
