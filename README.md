@@ -55,9 +55,6 @@
 
 
 ## 📚 참조  
-- **STT 엔진**: Google Speech-to-Text, Azure Cognitive Services  
-- **요약 모델**: Hugging Face Transformers, BERT 기반 모델  
-- **데이터 시각화**: Mermaid.js, D3.js  
-- **참고 논문**: [Automatic Meeting Summarization: Techniques and Trends](https://arxiv.org/abs/1234.5678)
+- **참고 논문**: [아무거나])
 
 ---
