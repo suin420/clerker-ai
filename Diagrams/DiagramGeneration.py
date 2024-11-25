@@ -20,15 +20,18 @@ def get_mermaid_code(diagram_type, diagrams_data):
 
 ## Mermaid 코드를 이미지로 저장하는 함수
 def save_mermaid_to_image(mermaid_code, chunk_num):
-    mermaid_file = f"/tmp/Diagrams/mermaid/chunk_{chunk_num}.mmd"
-    output_file = f"/tmp/Diagrams/mermaid/chunk_{chunk_num}.png"
-    puppeteer_config = "/tmp/Diagrams/puppeteer-config.json"
+    mermaid_file = f"./Diagrams/mermaid/chunk_{chunk_num}.mmd"
+    output_file = f"./Diagrams/mermaid/chunk_{chunk_num}.png"
+    puppeteer_config = "./Diagrams/puppeteer-config.json"
+    
+    font_path = 'Keywords/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundB.ttf'
 
     ## Mermaid 코드에 폰트와 색상 설정 코드 추가
     font_and_size_setting = """
     %%{init: {
         "theme": "base",
         "themeVariables": {
+            "fontFamily": "{font_path}, sans-serif",
             "primaryColor": "#c6dafd",       
             "primaryTextColor": "#000000",   
             "primaryBorderColor": "#2a4e85", 
@@ -121,12 +124,12 @@ def extract_mermaid_code(text):
     return mermaid_code
 
 def diagram_gen(input_summary_json):
-    model_id = '/tmp/models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7'
-    model_path = '/tmp/models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf'
+    model_id = 'models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7'
+    model_path = 'models/models--MLP-KTLim--llama-3-Korean-Bllossom-8B-gguf-Q4_K_M/snapshots/4e602ad115392e7298674e092d6f8b45138f1db7/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf'
     model, tokenizer = load_model_and_tokenizer(model_id, model_path)
 
     data = load_json(input_summary_json)
-    diagrams_data = load_json('/tmp/Diagrams/mermaid_code.json')
+    diagrams_data = load_json('./Diagrams/mermaid_code.json')
     chunks = data.get("chunks", [])
 
     PROMPT = '''

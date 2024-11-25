@@ -8,6 +8,7 @@ from datetime import datetime
 from transformers import AutoTokenizer
 from collections import Counter
 from wordcloud import WordCloud
+import torch
 
 import json
 import re
@@ -19,7 +20,8 @@ class AIAssistant:
         self.model = Llama(
             model_path=model_path,
             n_ctx=1024,
-            n_gpu_layers=-1
+            n_gpu_layers=-1,
+            verbose=True,
         )
         self.prompt = (
             "당신은 유용한 AI 어시스턴트입니다. 사용자의 질의에 대해 친절하고 정확하게 답변해야 합니다.\n"
@@ -123,17 +125,17 @@ def generate_report_from_json(report_summary_json, output_report_md):
         chunk_num = chunk['chunk_num']
         title = chunk['title']
         summary_text = chunk['summary']
-        chunk_titles.append(title)
         keyword_list.extend(chunk['keywords'].split(', '))
 
-        image_path = f"/tmp/Diagrams/mermaid/chunk_{chunk_num}.png"
+        image_path = f"Diagrams/mermaid/chunk_{chunk_num}.png"
         if os.path.exists(image_path):
+            chunk_titles.append(title)
             markdown_result += f"## {title.strip()}\n\n"
             markdown_result += f'![chunk_{chunk_num}]({image_path})\n\n'
             markdown_result += f"**요약**:\n\n{summary_text.strip()}.\n\n"
             markdown_result += "---\n\n"
 
-    font_path = '/tmp/Keywords/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundB.ttf'
+    font_path = 'Keywords/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundB.ttf'
     fm.fontManager.addfont(font_path)
     plt.rcParams['font.family'] = 'NanumSquareRound'
 
@@ -150,7 +152,7 @@ def generate_report_from_json(report_summary_json, output_report_md):
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis('off')
     plt.title('키워드 빈도수 워드클라우드', size=15)
-    plt.savefig('/tmp/Keywords/keyword_wordcloud.png')
+    plt.savefig('Diagrams/mermaid/keyword_wordcloud.png')
     plt.close()
 
     ## 가장 자주 등장하는 상위 5개의 키워드 추출
@@ -163,7 +165,7 @@ def generate_report_from_json(report_summary_json, output_report_md):
     plt.xlabel('키워드')
     plt.ylabel('빈도수')
     plt.title('상위 5개 키워드 빈도수')
-    plt.savefig('/tmp/Keywords/keyword_frequency.png')
+    plt.savefig('Diagrams/mermaid/keyword_frequency.png')
     plt.close()
 
     ## 표지 작성
@@ -172,8 +174,8 @@ def generate_report_from_json(report_summary_json, output_report_md):
     cover_page += f"#### 날짜 : {today_date}\n"
     cover_page += "## 상위 키워드\n\n"
     cover_page += keyword_text + "\n\n" 
-    cover_page += "![상위 5개 키워드 빈도수](/tmp/Keywords/keyword_frequency.png)\n\n"
-    cover_page += "![키워드 워드클라우드](/tmp/Keywords/keyword_wordcloud.png)\n\n"
+    cover_page += "![상위 5개 키워드 빈도수](Diagrams/mermaid/keyword_frequency.png)\n\n"
+    cover_page += "![키워드 워드클라우드](Diagrams/mermaid/keyword_wordcloud.png)\n\n"
     
     cover_page += "## 목차\n\n"
     for idx, title in enumerate(chunk_titles, start=1):

@@ -10,7 +10,7 @@ from langchain_experimental.text_splitter import SemanticChunker
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 
-model_name = "/tmp/models/models--jhgan--ko-sroberta-sts/snapshots/3efa8e54a06798b00bd1abb9c22b2dd530e22b24"
+model_name = "models/models--jhgan--ko-sroberta-sts/snapshots/3efa8e54a06798b00bd1abb9c22b2dd530e22b24"
 number_of_chunks=10  ## number of chunks
 max_length=512  ## max_length
 
@@ -19,7 +19,7 @@ def embedding(model_name):
     embeddings_model = HuggingFaceEmbeddings(
 
     model_name = model_name,
-    model_kwargs={'device':'cpu'},
+    model_kwargs={'device':'cuda'},
     encode_kwargs={'normalize_embeddings':True}
     
     )
