@@ -1,14 +1,18 @@
 # 📝 AI 모델을 활용한 회의 지원 솔루션 서비스 (Clerker - AI Team)
 <img src="Picture Folder/Clerker_image.png" alt="Clerker" width="900"/>
 
+<br>
+
 ## 🔍 프로젝트 소개  
 - AI 모델을 활용한 회의 지원 솔루션 서비스 **Clerker**는 음성 및 화상 회의 내용을 자동으로 요약하여 직관적이고 효율적인 보고서를 생성하는 혁신적인 서비스입니다.  
   - Clerker 플랫폼 내에서 온라인 회의 (Google Meet)를 생성하면 화면 녹화 기능을 통해 해당 회의를 녹화합니다.
   - 녹화된 회의 영상을 바탕으로 회의록을 텍스트 및 다이어그램으로 요약합니다.
-  - 회의만 해도 자동으로 보고서가 도출되는 편리한 서비스를 경험해보세요.
-
+  - 회의만 해도 자동으로 보고서가 생성되는 편리한 서비스를 경험해보세요.
+<br>
 
 ## 🤖 모델 관련  
+<img width="900" src="https://github.com/user-attachments/assets/4112d574-4c8d-4d0b-bd56-6d9008172669">
+
 - **STT 모델**  
   - Naver Clova API (CSR) 활용
   - 도메인 맞춤형 키워드 사전 제작 
@@ -25,12 +29,14 @@
   - LLM을 통해 청크별로 다이어그램화 할지 여부를 결정
   - 어떤 다이어그램으로 표현하는 것이 좋을지 결정
   - Mermaid Code 기반 다이어그램 생성
-
+<br>
 
 ## 🎯 주요 성과  
-- 요약 다이어그램 (프로젝트 로직)
-<img src="Picture Folder/Diagram_example.png" alt="Clerker" width="900"/>
+- 청크별 요약 다이어그램 
+- 회의 보고서 생성
+<img width="900" src="https://github.com/user-attachments/assets/c329c845-ef14-4433-9f5a-300cafcf3452">
 
+<br>
 
 ## 🚀 향후 계획  
 - **실시간 회의 요약**  
@@ -39,7 +45,7 @@
   - 더욱 정교한 다이어그램 및 데이터 시각화 기능 제공  
 - **모바일 앱 개발**  
   - 모바일 환경에서도 회의 요약 서비스 사용 가능  
-
+<br>
 
 ## 📚 참조  
 - **참고 논문**: [llama](https://arxiv.org/abs/2302.13971)
